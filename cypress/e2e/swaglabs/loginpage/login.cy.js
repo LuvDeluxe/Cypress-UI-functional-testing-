@@ -1,3 +1,5 @@
+import { loginSwagLabs } from "../../../support/functions"
+
 describe('Should verify the unlucky path for login', () => {
   beforeEach(() => {
     cy.visit('https://www.saucedemo.com/')
@@ -39,10 +41,6 @@ describe('Should verify the happy path', () => {
   })
 
   it('Should login', () => {
-    cy.get('input[name="user-name"]').click().clear().type(Cypress.env('loginUsername'), { log: false })
-    cy.get('#password').click().clear().type(Cypress.env('loginPassword'), { log: false })
-    cy.get('#login-button').click()
-    cy.url().should('include', '/inventory.html')
-    cy.get('#inventory_container').should('exist')
+    loginSwagLabs()
   })
 })
