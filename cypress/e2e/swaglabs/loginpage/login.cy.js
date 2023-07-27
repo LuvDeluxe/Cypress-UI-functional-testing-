@@ -32,3 +32,17 @@ describe('Should verify the unlucky path for login', () => {
     cy.get('.error').should('not.exist')
   })
 })
+
+describe('Should verify the happy path', () => {
+  beforeEach(() => {
+    cy.visit('https://www.saucedemo.com/')
+  })
+
+  it('Should login', () => {
+    cy.get('input[name="user-name"]').click().clear().type(Cypress.env('loginUsername'), { log: false })
+    cy.get('#password').click().clear().type(Cypress.env('loginPassword'), { log: false })
+    cy.get('#login-button').click()
+    cy.url().should('include', '/inventory.html')
+    cy.get('#inventory_container').should('exist')
+  })
+})
