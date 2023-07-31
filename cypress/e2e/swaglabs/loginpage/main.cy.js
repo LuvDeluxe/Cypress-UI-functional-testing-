@@ -42,5 +42,22 @@ describe('Should verify the happy path', () => {
 
   it('Should login', () => {
     loginSwagLabs()
+    cy.get('#inventory_container').should('exist')
+    cy.get('.shopping_cart_link').should('exist')
+    cy.get('.product_sort_container').should('exist')
+    cy.get('footer').should('exist')
+  })
+})
+
+describe('Should verify the sidebar after login', () => {
+  beforeEach(() => {
+    cy.visit('https://www.saucedemo.com/')
+  })
+
+  it('Verifies the sidebar', () => {
+    loginSwagLabs()
+    cy.get('.bm-burger-button').should('exist')
+    cy.get('.bm-burger-button').click()
+    cy.get('.bm-menu').should('exist')
   })
 })
